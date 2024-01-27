@@ -2,7 +2,7 @@
 
 OpenEdge Data Definitions grammar for tree-sitter.
 
-It's a cut down version of [tree-sitter-abl](https://github.com/usagi-coffee/tree-sitter-abl).
+It's a cut down version of [tree-sitter-abl](https://github.com/usagi-coffee/tree-sitter-abl) adapted for data definitions.
 
 ## Usage
 
