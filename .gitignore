@@ -1,0 +1,10 @@
+node_modules/
+tree-sitter-df.wasm
+target/
+build/
+venv/
+yarn.lock
+pnpm-lock.yaml
+example
+example.p
+bin
