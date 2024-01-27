@@ -363,7 +363,36 @@
   {
     "type": "table_tuning",
     "named": true,
-    "fields": {},
+    "fields": {
+      "procedure": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "double_quoted_string",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          }
+        ]
+      },
+      "trigger": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "double_quoted_string",
+            "named": true
+          },
+          {
+            "type": "single_quoted_string",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": false,
@@ -381,6 +410,10 @@
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "\"\"",
     "named": false
   },
   {
@@ -428,6 +461,10 @@
     "named": false
   },
   {
+    "type": "BLOB",
+    "named": false
+  },
+  {
     "type": "CASE-SENSITIVE",
     "named": false
   },
@@ -437,6 +474,22 @@
   },
   {
     "type": "CHARACTER",
+    "named": false
+  },
+  {
+    "type": "CLOB",
+    "named": false
+  },
+  {
+    "type": "CLOB-CODEPAGE",
+    "named": false
+  },
+  {
+    "type": "CLOB-COLLATION",
+    "named": false
+  },
+  {
+    "type": "CLOB-TYPE",
     "named": false
   },
   {
@@ -453,6 +506,10 @@
   },
   {
     "type": "CPSTREAM",
+    "named": false
+  },
+  {
+    "type": "CRC",
     "named": false
   },
   {
@@ -497,6 +554,10 @@
   },
   {
     "type": "END",
+    "named": false
+  },
+  {
+    "type": "EXTENT",
     "named": false
   },
   {
@@ -556,11 +617,27 @@
     "named": false
   },
   {
+    "type": "LOB-AREA",
+    "named": false
+  },
+  {
+    "type": "LOB-BYTES",
+    "named": false
+  },
+  {
+    "type": "LOB-SIZE",
+    "named": false
+  },
+  {
     "type": "LOGICAL",
     "named": false
   },
   {
     "type": "LONGCHAR",
+    "named": false
+  },
+  {
+    "type": "M",
     "named": false
   },
   {
@@ -588,6 +665,10 @@
     "named": false
   },
   {
+    "type": "NO-OVERRIDE",
+    "named": false
+  },
+  {
     "type": "OF",
     "named": false
   },
@@ -600,11 +681,19 @@
     "named": false
   },
   {
+    "type": "OVERRIDE",
+    "named": false
+  },
+  {
     "type": "POSITION",
     "named": false
   },
   {
     "type": "PRIMARY",
+    "named": false
+  },
+  {
+    "type": "PROCEDURE",
     "named": false
   },
   {
@@ -632,6 +721,10 @@
     "named": false
   },
   {
+    "type": "TABLE-TRIGGER",
+    "named": false
+  },
+  {
     "type": "TRUE",
     "named": false
   },
@@ -645,6 +738,10 @@
   },
   {
     "type": "VALMSG",
+    "named": false
+  },
+  {
+    "type": "VALMSG-SA",
     "named": false
   },
   {

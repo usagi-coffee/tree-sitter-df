@@ -31,10 +31,10 @@ module.exports = grammar({
       seq(choice($.double_quoted_string, $.single_quoted_string)),
 
     double_quoted_string: ($) =>
-      seq('"', repeat(choice(/[^"\\]+/, /\\./)), '"'),
+      seq('"', repeat(choice(/[^"\\]+/, /\\./, '""')), '"'),
 
     single_quoted_string: ($) =>
-      seq("'", repeat(choice(/[^'\\]+/, /\\./)), "'"),
+      seq("'", repeat(choice(/[^'\\]+/, /\\./, '""')), "'"),
 
     sort_order: ($) =>
       choice(kw("ASCENDING"), kw("DESCENDING"), kw("DESC"), kw("ASC")),
@@ -58,6 +58,8 @@ module.exports = grammar({
         kw("ROWID"),
         kw("HANDLE"),
         kw("COM-HANDLE"),
+        kw("BLOB"),
+        kw("CLOB"),
         $.qualified_name
       ),
 
@@ -86,7 +88,16 @@ module.exports = grammar({
         seq(kw("DUMP-NAME"), $._string_literal),
         seq(kw("VALEXP"), $._string_literal),
         seq(kw("VALMSG"), $._string_literal),
-        kw("FROZEN")
+        kw("FROZEN"),
+        seq(
+          "TABLE-TRIGGER",
+          field("trigger", $._string_literal),
+          choice(kw("OVERRIDE"), kw("NO-OVERRIDE")),
+          kw("PROCEDURE"),
+          field("procedure", $._string_literal),
+          kw("CRC"),
+          $._string_literal
+        )
       ),
     add_table_statement: ($) =>
       seq(
@@ -102,6 +113,7 @@ module.exports = grammar({
         seq(kw("FORMAT"), $._string_literal),
         seq(kw("DESCRIPTION"), $._string_literal),
         seq(kw("DECIMALS"), $.number_literal),
+        seq(kw("EXTENT"), $.number_literal),
         seq(kw("POSITION"), $.number_literal),
         seq(kw("MAX-WIDTH"), $.number_literal),
         seq(kw("ORDER"), $.number_literal),
@@ -109,6 +121,15 @@ module.exports = grammar({
         seq(kw("HELP"), $._string_literal),
         seq(kw("COLUMN-LABEL"), $._string_literal),
         seq(kw("COLUMN"), $._string_literal),
+        seq(kw("VALEXP"), $._string_literal),
+        seq(kw("VALMSG"), $._string_literal),
+        seq(kw("VALMSG-SA"), $._string_literal),
+        seq(kw("LOB-AREA"), $._string_literal),
+        seq(kw("LOB-BYTES"), $.number_literal),
+        seq(kw("LOB-SIZE"), $.number_literal, optional(token.immediate("M"))),
+        seq(kw("CLOB-CODEPAGE"), $._string_literal),
+        seq(kw("CLOB-COLLATION"), $._string_literal),
+        seq(kw("CLOB-TYPE"), $.number_literal),
         kw("MANDATORY"),
         kw("CASE-SENSITIVE")
       ),
@@ -127,6 +148,7 @@ module.exports = grammar({
     index_tuning: ($) =>
       choice(
         seq(kw("AREA"), $._string_literal),
+        seq(kw("DESCRIPTION"), $._string_literal),
         kw("UNIQUE"),
         kw("PRIMARY"),
         seq(
