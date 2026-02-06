@@ -1,0 +1,42 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "df",
+      "camelcase": "Df",
+      "title": "tree-sitter-df",
+      "scope": "source.df",
+      "file-types": [
+        "df"
+      ],
+      "injection-regex": "^df$",
+      "class-name": "TreeSitterDf"
+    }
+  ],
+  "metadata": {
+    "version": "0.0.5",
+    "license": "MIT",
+    "description": "Df grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Kamil Jakubus",
+        "email": "kamil.jakubus@usagi.coffee",
+        "url": ""
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/usagi-coffee/tree-sitter-df",
+      "funding": ""
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "java": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": true
+  }
+}
