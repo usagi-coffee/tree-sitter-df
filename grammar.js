@@ -11,7 +11,7 @@ export default grammar({
   name: "df",
 
   externals: ($) => [$._namedot],
-  extras: ($) => [$.comment, /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/],
+  extras: ($) => [/[\s\f\uFEFF\u2060\u200B]|\\\r?\n/, $.comment],
   word: ($) => $.identifier,
   supertypes: ($) => [$._expression, $._statement],
 
@@ -21,9 +21,7 @@ export default grammar({
     file_name: ($) => /[A-z-_|0-9|\/]+\.[i]/i,
     comment: ($) => seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"),
 
-    identifier: ($) => /[A-z_]{1}[A-z-_|0-9]*/i,
-    qualified_name: ($) =>
-      seq($.identifier, repeat1(seq(alias($._namedot, "."), $.identifier))),
+    identifier: ($) => token(/[_\p{L}][\p{L}\p{N}_\-&]*/i),
 
     _terminator: ($) => /\s*\./i,
     _block_terminator: ($) => seq(kw("END"), "."),
@@ -67,8 +65,7 @@ export default grammar({
         kw("HANDLE"),
         kw("COM-HANDLE"),
         kw("BLOB"),
-        kw("CLOB"),
-        $.qualified_name
+        kw("CLOB")
       ),
 
     /// Statements
@@ -180,7 +177,6 @@ export default grammar({
     _expression: ($) =>
       choice(
         $.identifier,
-        $.qualified_name,
         $.boolean_literal,
         $._string_literal,
         $.number_literal,
@@ -211,23 +207,29 @@ export default grammar({
   },
 });
 
-function kw(keyword) {
-  if (keyword.toUpperCase() != keyword) {
-    throw new Error(`Expected upper case keyword got ${keyword}`);
+function kw(word, options) {
+  const { alias: aliasName = word, offset } = options || {};
+  const off = Number.isInteger(offset) ? offset - 1 : -1; // default: require full word
+
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const s = esc(word);
+
+  const buildProgressiveOptional = (rest) => {
+    let out = "";
+    for (let i = rest.length - 1; i >= 0; i--) {
+      out = rest[i] + (out ? `(${out})?` : "");
+    }
+    return out ? `(${out})?` : "";
+  };
+
+  if (off < 0) {
+    return alias(token(new RegExp(s, "i")), aliasName);
   }
 
-  return alias(reserved(createCaseInsensitiveRegex(keyword)), keyword);
-}
+  const min = Math.min(Math.max(off + 1, 0), s.length); // require up to offset (inclusive)
+  const required = s.slice(0, min);
+  const rest = s.slice(min);
 
-function reserved(regex) {
-  return token(prec(1, new RegExp(regex)));
-}
-
-function createCaseInsensitiveRegex(word) {
-  return new RegExp(
-    word
-      .split("")
-      .map((letter) => `[${letter.toLowerCase()}${letter.toUpperCase()}]`)
-      .join("")
-  );
+  const pattern = required + buildProgressiveOptional(rest);
+  return alias(token(new RegExp(pattern, "i")), aliasName);
 }
