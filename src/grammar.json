@@ -50,39 +50,12 @@
       ]
     },
     "identifier": {
-      "type": "PATTERN",
-      "value": "[A-z_]{1}[A-z-_|0-9]*",
-      "flags": "i"
-    },
-    "qualified_name": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "ALIAS",
-                "content": {
-                  "type": "SYMBOL",
-                  "name": "_namedot"
-                },
-                "named": false,
-                "value": "."
-              },
-              {
-                "type": "SYMBOL",
-                "name": "identifier"
-              }
-            ]
-          }
-        }
-      ]
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[_\\p{L}][\\p{L}\\p{N}_\\-&]*",
+        "flags": "i"
+      }
     },
     "_terminator": {
       "type": "PATTERN",
@@ -97,12 +70,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[eE][nN][dD]"
-              }
+              "type": "PATTERN",
+              "value": "END",
+              "flags": "i"
             }
           },
           "named": false,
@@ -126,12 +96,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[tT][rR][uU][eE]"
-              }
+              "type": "PATTERN",
+              "value": "TRUE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -142,12 +109,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[fF][aA][lL][sS][eE]"
-              }
+              "type": "PATTERN",
+              "value": "FALSE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -158,12 +122,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[yY][eE][sS]"
-              }
+              "type": "PATTERN",
+              "value": "YES",
+              "flags": "i"
             }
           },
           "named": false,
@@ -174,12 +135,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[nN][oO]"
-              }
+              "type": "PATTERN",
+              "value": "NO",
+              "flags": "i"
             }
           },
           "named": false,
@@ -318,12 +276,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][sS][cC][eE][nN][dD][iI][nN][gG]"
-              }
+              "type": "PATTERN",
+              "value": "ASCENDING",
+              "flags": "i"
             }
           },
           "named": false,
@@ -334,12 +289,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[dD][eE][sS][cC][eE][nN][dD][iI][nN][gG]"
-              }
+              "type": "PATTERN",
+              "value": "DESCENDING",
+              "flags": "i"
             }
           },
           "named": false,
@@ -350,12 +302,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[dD][eE][sS][cC]"
-              }
+              "type": "PATTERN",
+              "value": "DESC",
+              "flags": "i"
             }
           },
           "named": false,
@@ -366,12 +315,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][sS][cC]"
-              }
+              "type": "PATTERN",
+              "value": "ASC",
+              "flags": "i"
             }
           },
           "named": false,
@@ -387,12 +333,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[lL][oO][gG][iI][cC][aA][lL]"
-              }
+              "type": "PATTERN",
+              "value": "LOGICAL",
+              "flags": "i"
             }
           },
           "named": false,
@@ -403,12 +346,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[iI][nN][tT][eE][gG][eE][rR]"
-              }
+              "type": "PATTERN",
+              "value": "INTEGER",
+              "flags": "i"
             }
           },
           "named": false,
@@ -419,12 +359,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[iI][nN][tT]"
-              }
+              "type": "PATTERN",
+              "value": "INT",
+              "flags": "i"
             }
           },
           "named": false,
@@ -435,12 +372,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[cC][hH][aA][rR][aA][cC][tT][eE][rR]"
-              }
+              "type": "PATTERN",
+              "value": "CHARACTER",
+              "flags": "i"
             }
           },
           "named": false,
@@ -451,12 +385,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[cC][hH][aA][rR]"
-              }
+              "type": "PATTERN",
+              "value": "CHAR",
+              "flags": "i"
             }
           },
           "named": false,
@@ -467,12 +398,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[dD][eE][cC][iI][mM][aA][lL]"
-              }
+              "type": "PATTERN",
+              "value": "DECIMAL",
+              "flags": "i"
             }
           },
           "named": false,
@@ -483,12 +411,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[dD][aA][tT][eE]"
-              }
+              "type": "PATTERN",
+              "value": "DATE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -499,12 +424,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[dD][aA][tT][eE][tT][iI][mM][eE]"
-              }
+              "type": "PATTERN",
+              "value": "DATETIME",
+              "flags": "i"
             }
           },
           "named": false,
@@ -515,12 +437,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[dD][aA][tT][eE][tT][iI][mM][eE][--][tT][zZ]"
-              }
+              "type": "PATTERN",
+              "value": "DATETIME-TZ",
+              "flags": "i"
             }
           },
           "named": false,
@@ -531,12 +450,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[iI][nN][tT][66][44]"
-              }
+              "type": "PATTERN",
+              "value": "INT64",
+              "flags": "i"
             }
           },
           "named": false,
@@ -547,12 +463,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[lL][oO][nN][gG][cC][hH][aA][rR]"
-              }
+              "type": "PATTERN",
+              "value": "LONGCHAR",
+              "flags": "i"
             }
           },
           "named": false,
@@ -563,12 +476,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[mM][eE][mM][pP][tT][rR]"
-              }
+              "type": "PATTERN",
+              "value": "MEMPTR",
+              "flags": "i"
             }
           },
           "named": false,
@@ -579,12 +489,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[rR][aA][wW]"
-              }
+              "type": "PATTERN",
+              "value": "RAW",
+              "flags": "i"
             }
           },
           "named": false,
@@ -595,12 +502,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[rR][eE][cC][iI][dD]"
-              }
+              "type": "PATTERN",
+              "value": "RECID",
+              "flags": "i"
             }
           },
           "named": false,
@@ -611,12 +515,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[rR][oO][wW][iI][dD]"
-              }
+              "type": "PATTERN",
+              "value": "ROWID",
+              "flags": "i"
             }
           },
           "named": false,
@@ -627,12 +528,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[hH][aA][nN][dD][lL][eE]"
-              }
+              "type": "PATTERN",
+              "value": "HANDLE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -643,12 +541,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[cC][oO][mM][--][hH][aA][nN][dD][lL][eE]"
-              }
+              "type": "PATTERN",
+              "value": "COM-HANDLE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -659,12 +554,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[bB][lL][oO][bB]"
-              }
+              "type": "PATTERN",
+              "value": "BLOB",
+              "flags": "i"
             }
           },
           "named": false,
@@ -675,20 +567,13 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[cC][lL][oO][bB]"
-              }
+              "type": "PATTERN",
+              "value": "CLOB",
+              "flags": "i"
             }
           },
           "named": false,
           "value": "CLOB"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "qualified_name"
         }
       ]
     },
@@ -703,12 +588,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[iI][nN][iI][tT][iI][aA][lL]"
-                  }
+                  "type": "PATTERN",
+                  "value": "INITIAL",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -728,12 +610,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[iI][nN][cC][rR][eE][mM][eE][nN][tT]"
-                  }
+                  "type": "PATTERN",
+                  "value": "INCREMENT",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -753,12 +632,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[cC][yY][cC][lL][eE][--][oO][nN][--][lL][iI][mM][iI][tT]"
-                  }
+                  "type": "PATTERN",
+                  "value": "CYCLE-ON-LIMIT",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -778,12 +654,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[mM][iI][nN][--][vV][aA][lL]"
-                  }
+                  "type": "PATTERN",
+                  "value": "MIN-VAL",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -803,12 +676,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[mM][aA][xX][--][vV][aA][lL]"
-                  }
+                  "type": "PATTERN",
+                  "value": "MAX-VAL",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -830,12 +700,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][dD][dD]"
-              }
+              "type": "PATTERN",
+              "value": "ADD",
+              "flags": "i"
             }
           },
           "named": false,
@@ -846,12 +713,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[sS][eE][qQ][uU][eE][nN][cC][eE]"
-              }
+              "type": "PATTERN",
+              "value": "SEQUENCE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -885,12 +749,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[aA][rR][eE][aA]"
-                  }
+                  "type": "PATTERN",
+                  "value": "AREA",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -910,12 +771,141 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[dD][eE][sS][cC][rR][iI][pP][tT][iI][oO][nN]"
-                  }
+                  "type": "PATTERN",
+                  "value": "CAN-CREATE",
+                  "flags": "i"
+                }
+              },
+              "named": false,
+              "value": "CAN-CREATE"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "CAN-DELETE",
+                  "flags": "i"
+                }
+              },
+              "named": false,
+              "value": "CAN-DELETE"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "CAN-READ",
+                  "flags": "i"
+                }
+              },
+              "named": false,
+              "value": "CAN-READ"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "CAN-WRITE",
+                  "flags": "i"
+                }
+              },
+              "named": false,
+              "value": "CAN-WRITE"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "CAN-DUMP",
+                  "flags": "i"
+                }
+              },
+              "named": false,
+              "value": "CAN-DUMP"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "CAN-LOAD",
+                  "flags": "i"
+                }
+              },
+              "named": false,
+              "value": "CAN-LOAD"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_string_literal"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "DESCRIPTION",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -935,12 +925,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[lL][aA][bB][eE][lL]"
-                  }
+                  "type": "PATTERN",
+                  "value": "LABEL",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -960,12 +947,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[dD][uU][mM][pP][--][nN][aA][mM][eE]"
-                  }
+                  "type": "PATTERN",
+                  "value": "DUMP-NAME",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -985,12 +969,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[vV][aA][lL][eE][xX][pP]"
-                  }
+                  "type": "PATTERN",
+                  "value": "VALEXP",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1010,12 +991,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[vV][aA][lL][mM][sS][gG]"
-                  }
+                  "type": "PATTERN",
+                  "value": "VALMSG",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1032,12 +1010,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[fF][rR][oO][zZ][eE][nN]"
-              }
+              "type": "PATTERN",
+              "value": "FROZEN",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1066,12 +1041,9 @@
                   "content": {
                     "type": "TOKEN",
                     "content": {
-                      "type": "PREC",
-                      "value": 1,
-                      "content": {
-                        "type": "PATTERN",
-                        "value": "[oO][vV][eE][rR][rR][iI][dD][eE]"
-                      }
+                      "type": "PATTERN",
+                      "value": "OVERRIDE",
+                      "flags": "i"
                     }
                   },
                   "named": false,
@@ -1082,12 +1054,9 @@
                   "content": {
                     "type": "TOKEN",
                     "content": {
-                      "type": "PREC",
-                      "value": 1,
-                      "content": {
-                        "type": "PATTERN",
-                        "value": "[nN][oO][--][oO][vV][eE][rR][rR][iI][dD][eE]"
-                      }
+                      "type": "PATTERN",
+                      "value": "NO-OVERRIDE",
+                      "flags": "i"
                     }
                   },
                   "named": false,
@@ -1100,12 +1069,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[pP][rR][oO][cC][eE][dD][uU][rR][eE]"
-                  }
+                  "type": "PATTERN",
+                  "value": "PROCEDURE",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1124,12 +1090,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[cC][rR][cC]"
-                  }
+                  "type": "PATTERN",
+                  "value": "CRC",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1151,12 +1114,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][dD][dD]"
-              }
+              "type": "PATTERN",
+              "value": "ADD",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1167,12 +1127,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[tT][aA][bB][lL][eE]"
-              }
+              "type": "PATTERN",
+              "value": "TABLE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1206,12 +1163,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[iI][nN][iI][tT][iI][aA][lL]"
-                  }
+                  "type": "PATTERN",
+                  "value": "INITIAL",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1231,12 +1185,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[fF][oO][rR][mM][aA][tT]"
-                  }
+                  "type": "PATTERN",
+                  "value": "FORMAT",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1256,12 +1207,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[dD][eE][sS][cC][rR][iI][pP][tT][iI][oO][nN]"
-                  }
+                  "type": "PATTERN",
+                  "value": "DESCRIPTION",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1281,12 +1229,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[dD][eE][cC][iI][mM][aA][lL][sS]"
-                  }
+                  "type": "PATTERN",
+                  "value": "DECIMALS",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1306,12 +1251,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[eE][xX][tT][eE][nN][tT]"
-                  }
+                  "type": "PATTERN",
+                  "value": "EXTENT",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1331,12 +1273,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[pP][oO][sS][iI][tT][iI][oO][nN]"
-                  }
+                  "type": "PATTERN",
+                  "value": "POSITION",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1356,12 +1295,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[mM][aA][xX][--][wW][iI][dD][tT][hH]"
-                  }
+                  "type": "PATTERN",
+                  "value": "MAX-WIDTH",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1381,12 +1317,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[oO][rR][dD][eE][rR]"
-                  }
+                  "type": "PATTERN",
+                  "value": "ORDER",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1406,12 +1339,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[lL][aA][bB][eE][lL]"
-                  }
+                  "type": "PATTERN",
+                  "value": "LABEL",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1431,12 +1361,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[hH][eE][lL][pP]"
-                  }
+                  "type": "PATTERN",
+                  "value": "HELP",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1456,12 +1383,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[cC][oO][lL][uU][mM][nN][--][lL][aA][bB][eE][lL]"
-                  }
+                  "type": "PATTERN",
+                  "value": "COLUMN-LABEL",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1481,12 +1405,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[cC][oO][lL][uU][mM][nN]"
-                  }
+                  "type": "PATTERN",
+                  "value": "COLUMN",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1506,12 +1427,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[vV][aA][lL][eE][xX][pP]"
-                  }
+                  "type": "PATTERN",
+                  "value": "VALEXP",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1531,12 +1449,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[vV][aA][lL][mM][sS][gG]"
-                  }
+                  "type": "PATTERN",
+                  "value": "VALMSG",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1556,12 +1471,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[vV][aA][lL][mM][sS][gG][--][sS][aA]"
-                  }
+                  "type": "PATTERN",
+                  "value": "VALMSG-SA",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1581,12 +1493,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[lL][oO][bB][--][aA][rR][eE][aA]"
-                  }
+                  "type": "PATTERN",
+                  "value": "LOB-AREA",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1606,12 +1515,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[lL][oO][bB][--][bB][yY][tT][eE][sS]"
-                  }
+                  "type": "PATTERN",
+                  "value": "LOB-BYTES",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1631,12 +1537,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[lL][oO][bB][--][sS][iI][zZ][eE]"
-                  }
+                  "type": "PATTERN",
+                  "value": "LOB-SIZE",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1671,12 +1574,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[cC][lL][oO][bB][--][cC][oO][dD][eE][pP][aA][gG][eE]"
-                  }
+                  "type": "PATTERN",
+                  "value": "CLOB-CODEPAGE",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1696,12 +1596,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[cC][lL][oO][bB][--][cC][oO][lL][lL][aA][tT][iI][oO][nN]"
-                  }
+                  "type": "PATTERN",
+                  "value": "CLOB-COLLATION",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1721,12 +1618,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[cC][lL][oO][bB][--][tT][yY][pP][eE]"
-                  }
+                  "type": "PATTERN",
+                  "value": "CLOB-TYPE",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1743,12 +1637,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[mM][aA][nN][dD][aA][tT][oO][rR][yY]"
-              }
+              "type": "PATTERN",
+              "value": "MANDATORY",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1759,12 +1650,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[cC][aA][sS][eE][--][sS][eE][nN][sS][iI][tT][iI][vV][eE]"
-              }
+              "type": "PATTERN",
+              "value": "CASE-SENSITIVE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1780,12 +1668,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][dD][dD]"
-              }
+              "type": "PATTERN",
+              "value": "ADD",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1796,12 +1681,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[fF][iI][eE][lL][dD]"
-              }
+              "type": "PATTERN",
+              "value": "FIELD",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1820,12 +1702,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[oO][fF]"
-              }
+              "type": "PATTERN",
+              "value": "OF",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1844,12 +1723,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][sS]"
-              }
+              "type": "PATTERN",
+              "value": "AS",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1883,12 +1759,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[aA][rR][eE][aA]"
-                  }
+                  "type": "PATTERN",
+                  "value": "AREA",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1908,12 +1781,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[dD][eE][sS][cC][rR][iI][pP][tT][iI][oO][nN]"
-                  }
+                  "type": "PATTERN",
+                  "value": "DESCRIPTION",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1930,12 +1800,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[uU][nN][iI][qQ][uU][eE]"
-              }
+              "type": "PATTERN",
+              "value": "UNIQUE",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1946,12 +1813,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[pP][rR][iI][mM][aA][rR][yY]"
-              }
+              "type": "PATTERN",
+              "value": "PRIMARY",
+              "flags": "i"
             }
           },
           "named": false,
@@ -1965,12 +1829,9 @@
               "content": {
                 "type": "TOKEN",
                 "content": {
-                  "type": "PREC",
-                  "value": 1,
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[iI][nN][dD][eE][xX][--][fF][iI][eE][lL][dD]"
-                  }
+                  "type": "PATTERN",
+                  "value": "INDEX-FIELD",
+                  "flags": "i"
                 }
               },
               "named": false,
@@ -1992,12 +1853,9 @@
                   "content": {
                     "type": "TOKEN",
                     "content": {
-                      "type": "PREC",
-                      "value": 1,
-                      "content": {
-                        "type": "PATTERN",
-                        "value": "[aA][bB][bB][rR][eE][vV][iI][aA][tT][eE][dD]"
-                      }
+                      "type": "PATTERN",
+                      "value": "ABBREVIATED",
+                      "flags": "i"
                     }
                   },
                   "named": false,
@@ -2020,12 +1878,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[aA][dD][dD]"
-              }
+              "type": "PATTERN",
+              "value": "ADD",
+              "flags": "i"
             }
           },
           "named": false,
@@ -2036,12 +1891,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[iI][nN][dD][eE][xX]"
-              }
+              "type": "PATTERN",
+              "value": "INDEX",
+              "flags": "i"
             }
           },
           "named": false,
@@ -2060,12 +1912,9 @@
           "content": {
             "type": "TOKEN",
             "content": {
-              "type": "PREC",
-              "value": 1,
-              "content": {
-                "type": "PATTERN",
-                "value": "[oO][nN]"
-              }
+              "type": "PATTERN",
+              "value": "ON",
+              "flags": "i"
             }
           },
           "named": false,
@@ -2094,10 +1943,6 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "qualified_name"
         },
         {
           "type": "SYMBOL",
@@ -2155,12 +2000,9 @@
                 "content": {
                   "type": "TOKEN",
                   "content": {
-                    "type": "PREC",
-                    "value": 1,
-                    "content": {
-                      "type": "PATTERN",
-                      "value": "[pP][sS][cC]"
-                    }
+                    "type": "PATTERN",
+                    "value": "PSC",
+                    "flags": "i"
                   }
                 },
                 "named": false,
@@ -2174,12 +2016,9 @@
                     "content": {
                       "type": "TOKEN",
                       "content": {
-                        "type": "PREC",
-                        "value": 1,
-                        "content": {
-                          "type": "PATTERN",
-                          "value": "[cC][pP][sS][tT][rR][eE][aA][mM]"
-                        }
+                        "type": "PATTERN",
+                        "value": "CPSTREAM",
+                        "flags": "i"
                       }
                     },
                     "named": false,
@@ -2211,12 +2050,12 @@
   },
   "extras": [
     {
-      "type": "SYMBOL",
-      "name": "comment"
-    },
-    {
       "type": "PATTERN",
       "value": "[\\s\\f\\uFEFF\\u2060\\u200B]|\\\\\\r?\\n"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
     }
   ],
   "conflicts": [],

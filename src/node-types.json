@@ -24,10 +24,6 @@
         "named": true
       },
       {
-        "type": "qualified_name",
-        "named": true
-      },
-      {
         "type": "single_quoted_string",
         "named": true
       }
@@ -290,32 +286,7 @@
   {
     "type": "primitive_type",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "qualified_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "qualified_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "sequence_tuning",
@@ -464,6 +435,30 @@
   },
   {
     "type": "BLOB",
+    "named": false
+  },
+  {
+    "type": "CAN-CREATE",
+    "named": false
+  },
+  {
+    "type": "CAN-DELETE",
+    "named": false
+  },
+  {
+    "type": "CAN-DUMP",
+    "named": false
+  },
+  {
+    "type": "CAN-LOAD",
+    "named": false
+  },
+  {
+    "type": "CAN-READ",
+    "named": false
+  },
+  {
+    "type": "CAN-WRITE",
     "named": false
   },
   {

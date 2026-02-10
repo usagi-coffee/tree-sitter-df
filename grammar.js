@@ -88,6 +88,12 @@ export default grammar({
     table_tuning: ($) =>
       choice(
         seq(kw("AREA"), $._string_literal),
+        seq(kw("CAN-CREATE"), $._string_literal),
+        seq(kw("CAN-DELETE"), $._string_literal),
+        seq(kw("CAN-READ"), $._string_literal),
+        seq(kw("CAN-WRITE"), $._string_literal),
+        seq(kw("CAN-DUMP"), $._string_literal),
+        seq(kw("CAN-LOAD"), $._string_literal),
         seq(kw("DESCRIPTION"), $._string_literal),
         seq(kw("LABEL"), $._string_literal),
         seq(kw("DUMP-NAME"), $._string_literal),
