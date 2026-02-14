@@ -48,7 +48,7 @@ ADD SEQUENCE "seq_null"
   (add_sequence_statement
     sequence: (string_literal)
     (sequence_tuning
-      (null_expression))))
+      (null_literal))))
 
 ==================
 ADD TABLE - Full tuning coverage including TABLE-TRIGGER

@@ -26,22 +26,18 @@ export default grammar({
     _terminator: ($) => /\s*\./i,
     _block_terminator: ($) => seq(kw("END"), "."),
 
-    null_expression: ($) => /\?/,
+    null_literal: ($) => /\?/,
     boolean_literal: ($) =>
       choice(kw("TRUE"), kw("FALSE"), kw("YES"), kw("NO")),
-    _integer_literal: ($) => /[0-9]+/,
-    _decimal_literal: ($) =>
-      seq($._integer_literal, alias($._namedot, "."), $._integer_literal),
-
-    number_literal: ($) => choice($._integer_literal, $._decimal_literal),
+    number_literal: ($) => token(/[+-]?([0-9]+(\.[0-9]+)?|\.[0-9]+)/),
+    date_literal: ($) => token(/[0-9]{1,2}[./][0-9]{1,2}[./][0-9]{2,4}/),
+    _double_quoted_string: ($) =>
+      seq('"', repeat(choice(/[^"\\]+/, /\\./, '""')), '"'),
+    _single_quoted_string: ($) =>
+      seq("'", repeat(choice(/[^'\\]+/, /\\./, '""')), "'"),
     string_literal: ($) =>
       seq(choice($._double_quoted_string, $._single_quoted_string)),
 
-    _double_quoted_string: ($) =>
-      seq('"', repeat(choice(/[^"\\]+/, /\\./, '""')), '"'),
-
-    _single_quoted_string: ($) =>
-      seq("'", repeat(choice(/[^'\\]+/, /\\./, '""')), "'"),
     sort_order: ($) =>
       choice(kw("ASCENDING"), kw("DESCENDING"), kw("DESC"), kw("ASC")),
 
@@ -186,7 +182,8 @@ export default grammar({
         $.boolean_literal,
         $.string_literal,
         $.number_literal,
-        $.null_expression
+        $.null_literal,
+        $.date_literal
       ),
 
     _statement: ($) =>
