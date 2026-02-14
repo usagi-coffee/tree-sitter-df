@@ -48,7 +48,7 @@
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
     "test": "tree-sitter test",
-    "build": "tree-sitter build",
-    "build:wasm": "tree-sitter build -w"
+    "build": "tree-sitter generate && tree-sitter build",
+    "build:wasm": "tree-sitter generate && tree-sitter build -w"
   }
 }
