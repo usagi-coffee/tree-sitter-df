@@ -51,6 +51,7 @@
     "test": "bun run tools/generate.js && bun run tools/test.js",
     "build": "bun run tools/generate.js && tree-sitter build",
     "build:wasm": "tree-sitter generate && tree-sitter build -w",
+    "prepublish": "bun run build && bun run build:wasm",
     "parse": "bun run tools/generate.js && tree-sitter parse",
     "parse:snippet": "bun run tools/generate.js && bun run tools/parse.js"
   }
