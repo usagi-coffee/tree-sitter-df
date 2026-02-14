@@ -1,6 +1,6 @@
 {
   "name": "@usagi-coffee/tree-sitter-df",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "OpenEdge DF grammar for tree-sitter",
   "type": "module",
   "repository": {

@@ -8,11 +8,15 @@
         "named": true
       },
       {
+        "type": "date_literal",
+        "named": true
+      },
+      {
         "type": "identifier",
         "named": true
       },
       {
-        "type": "null_expression",
+        "type": "null_literal",
         "named": true
       },
       {
@@ -240,11 +244,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "number_literal",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "sequence_tuning",
@@ -693,11 +692,19 @@
     "named": false
   },
   {
+    "type": "date_literal",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
   {
-    "type": "null_expression",
+    "type": "null_literal",
+    "named": true
+  },
+  {
+    "type": "number_literal",
     "named": true
   }
 ]
