@@ -1,6 +1,6 @@
 {
   "name": "@usagi-coffee/tree-sitter-df",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "OpenEdge DF grammar for tree-sitter",
   "type": "module",
   "repository": {
@@ -47,6 +47,7 @@
     "install": "node-gyp-build",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
+    "generate": "tree-sitter generate",
     "test": "bun run tools/generate.js && bun run tools/test.js",
     "build": "bun run tools/generate.js && tree-sitter build",
     "build:wasm": "tree-sitter generate && tree-sitter build -w",

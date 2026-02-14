@@ -8,10 +8,6 @@
         "named": true
       },
       {
-        "type": "double_quoted_string",
-        "named": true
-      },
-      {
         "type": "identifier",
         "named": true
       },
@@ -24,7 +20,7 @@
         "named": true
       },
       {
-        "type": "single_quoted_string",
+        "type": "string_literal",
         "named": true
       }
     ]
@@ -60,11 +56,7 @@
         "required": true,
         "types": [
           {
-            "type": "double_quoted_string",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -74,11 +66,7 @@
         "required": true,
         "types": [
           {
-            "type": "double_quoted_string",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -88,7 +76,7 @@
         "required": true,
         "types": [
           {
-            "type": "primitive_type",
+            "type": "type",
             "named": true
           }
         ]
@@ -114,11 +102,7 @@
         "required": true,
         "types": [
           {
-            "type": "double_quoted_string",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -128,11 +112,7 @@
         "required": true,
         "types": [
           {
-            "type": "double_quoted_string",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -158,11 +138,7 @@
         "required": true,
         "types": [
           {
-            "type": "double_quoted_string",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -188,11 +164,7 @@
         "required": true,
         "types": [
           {
-            "type": "double_quoted_string",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -218,11 +190,6 @@
     "type": "comment",
     "named": true,
     "extra": true,
-    "fields": {}
-  },
-  {
-    "type": "double_quoted_string",
-    "named": true,
     "fields": {}
   },
   {
@@ -264,15 +231,11 @@
       "required": false,
       "types": [
         {
-          "type": "double_quoted_string",
-          "named": true
-        },
-        {
-          "type": "single_quoted_string",
-          "named": true
-        },
-        {
           "type": "sort_order",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         }
       ]
@@ -280,11 +243,6 @@
   },
   {
     "type": "number_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "primitive_type",
     "named": true,
     "fields": {}
   },
@@ -302,11 +260,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "single_quoted_string",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "sort_order",
@@ -334,6 +287,11 @@
     }
   },
   {
+    "type": "string_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "table_tuning",
     "named": true,
     "fields": {
@@ -342,11 +300,7 @@
         "required": false,
         "types": [
           {
-            "type": "double_quoted_string",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -356,11 +310,7 @@
         "required": false,
         "types": [
           {
-            "type": "double_quoted_string",
-            "named": true
-          },
-          {
-            "type": "single_quoted_string",
+            "type": "string_literal",
             "named": true
           }
         ]
@@ -371,15 +321,16 @@
       "required": false,
       "types": [
         {
-          "type": "double_quoted_string",
-          "named": true
-        },
-        {
-          "type": "single_quoted_string",
+          "type": "string_literal",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "type",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "\"",
