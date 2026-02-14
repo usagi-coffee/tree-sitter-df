@@ -1,0 +1,389 @@
+==================
+ADD SEQUENCE - Full tuning coverage
+==================
+ADD SEQUENCE "seq_main"
+  INITIAL base_value
+  INCREMENT 10
+  CYCLE-ON-LIMIT YES
+  MIN-VAL 1
+  MAX-VAL 999
+
+---
+
+(source_code
+  (add_sequence_statement
+    sequence: (string_literal)
+    (sequence_tuning
+      (identifier))
+    (sequence_tuning
+      (number_literal))
+    (sequence_tuning
+      (boolean_literal))
+    (sequence_tuning
+      (number_literal))
+    (sequence_tuning
+      (number_literal))))
+
+==================
+ADD SEQUENCE - Literal expression variants
+==================
+ADD SEQUENCE "seq_literals"
+  INITIAL "seed"
+ADD SEQUENCE "seq_number"
+  INITIAL 42.25
+ADD SEQUENCE "seq_null"
+  INITIAL ?
+
+---
+
+(source_code
+  (add_sequence_statement
+    sequence: (string_literal)
+    (sequence_tuning
+      (string_literal)))
+  (add_sequence_statement
+    sequence: (string_literal)
+    (sequence_tuning
+      (number_literal)))
+  (add_sequence_statement
+    sequence: (string_literal)
+    (sequence_tuning
+      (null_expression))))
+
+==================
+ADD TABLE - Full tuning coverage including TABLE-TRIGGER
+==================
+ADD TABLE "customer"
+  AREA "Schema Area"
+  CAN-CREATE "admin"
+  CAN-DELETE "admin"
+  CAN-READ "*"
+  CAN-WRITE "admin"
+  CAN-DUMP "dump-role"
+  CAN-LOAD "load-role"
+  DESCRIPTION "Customer master table"
+  LABEL "Customer"
+  DUMP-NAME "cust"
+  VALEXP "TRUE"
+  VALMSG "Invalid customer"
+  FROZEN
+  TABLE-TRIGGER "WRITE" OVERRIDE PROCEDURE "trg_customer_write.p" CRC "7A31"
+
+---
+
+(source_code
+  (add_table_statement
+    table: (string_literal)
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning
+      (string_literal))
+    (table_tuning)
+    (table_tuning
+      trigger: (string_literal)
+      procedure: (string_literal)
+      (string_literal))))
+
+==================
+ADD TABLE - TABLE-TRIGGER NO-OVERRIDE variant
+==================
+ADD TABLE "orders"
+  TABLE-TRIGGER "DELETE" NO-OVERRIDE PROCEDURE "trg_orders_delete.p" CRC "9F22"
+
+---
+
+(source_code
+  (add_table_statement
+    table: (string_literal)
+    (table_tuning
+      trigger: (string_literal)
+      procedure: (string_literal)
+      (string_literal))))
+
+==================
+ADD FIELD - Full tuning coverage
+==================
+ADD FIELD "profile_blob" OF "customer" AS BLOB
+  INITIAL 'raw-init'
+  FORMAT "x(8)"
+  DESCRIPTION "Profile binary"
+  DECIMALS 0
+  EXTENT 2
+  POSITION 5
+  MAX-WIDTH 1024
+  ORDER 90
+  LABEL "Blob"
+  HELP "Binary profile"
+  COLUMN-LABEL "Profile"
+  COLUMN "ProfileCol"
+  VALEXP "TRUE"
+  VALMSG "Invalid blob"
+  VALMSG-SA "Invalid blob SA"
+  LOB-AREA "Lob Area"
+  LOB-BYTES 1048576
+  LOB-SIZE 16M
+  CLOB-CODEPAGE "UTF-8"
+  CLOB-COLLATION "basic"
+  CLOB-TYPE 1
+  MANDATORY
+  CASE-SENSITIVE
+
+---
+
+(source_code
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type)
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (number_literal))
+    (field_tuning
+      (number_literal))
+    (field_tuning
+      (number_literal))
+    (field_tuning
+      (number_literal))
+    (field_tuning
+      (number_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (number_literal))
+    (field_tuning
+      (number_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (string_literal))
+    (field_tuning
+      (number_literal))
+    (field_tuning)
+    (field_tuning)))
+
+==================
+ADD FIELD - Primitive type coverage
+==================
+ADD FIELD "f_logical" OF "t" AS LOGICAL
+ADD FIELD "f_integer" OF "t" AS INTEGER
+ADD FIELD "f_int" OF "t" AS INT
+ADD FIELD "f_character" OF "t" AS CHARACTER
+ADD FIELD "f_char" OF "t" AS CHAR
+ADD FIELD "f_decimal" OF "t" AS DECIMAL
+ADD FIELD "f_date" OF "t" AS DATE
+ADD FIELD "f_datetime" OF "t" AS DATETIME
+ADD FIELD "f_datetime_tz" OF "t" AS DATETIME-TZ
+ADD FIELD "f_int64" OF "t" AS INT64
+ADD FIELD "f_longchar" OF "t" AS LONGCHAR
+ADD FIELD "f_memptr" OF "t" AS MEMPTR
+ADD FIELD "f_raw" OF "t" AS RAW
+ADD FIELD "f_recid" OF "t" AS RECID
+ADD FIELD "f_rowid" OF "t" AS ROWID
+ADD FIELD "f_handle" OF "t" AS HANDLE
+ADD FIELD "f_com_handle" OF "t" AS COM-HANDLE
+ADD FIELD "f_blob" OF "t" AS BLOB
+ADD FIELD "f_clob" OF "t" AS CLOB
+
+---
+
+(source_code
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type))
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type)))
+
+==================
+ADD INDEX - Full tuning and sort-order variants
+==================
+ADD INDEX "idx_customer_1" ON "customer"
+  AREA "Schema Area"
+  DESCRIPTION "Main customer index"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "custnum" ASCENDING
+  INDEX-FIELD "name" DESCENDING ABBREVIATED
+ADD INDEX "idx_customer_2" ON "customer"
+  INDEX-FIELD "city" DESC
+  INDEX-FIELD "country" ASC
+
+---
+
+(source_code
+  (add_index_statement
+    index: (string_literal)
+    table: (string_literal)
+    (index_tuning
+      (string_literal))
+    (index_tuning
+      (string_literal))
+    (index_tuning)
+    (index_tuning)
+    (index_tuning
+      (string_literal)
+      (sort_order))
+    (index_tuning
+      (string_literal)
+      (sort_order)))
+  (add_index_statement
+    index: (string_literal)
+    table: (string_literal)
+    (index_tuning
+      (string_literal)
+      (sort_order))
+    (index_tuning
+      (string_literal)
+      (sort_order))))
+
+==================
+Comments and escaped newline continuation in extras
+==================
+/* leading file comment */
+ADD TABLE "t_comment" \
+  LABEL "Has continuation" /* inline comment */
+ADD FIELD "f_comment" OF "t_comment" AS CHARACTER
+  INITIAL 'value'
+
+---
+
+(source_code
+  (comment)
+  (add_table_statement
+    table: (string_literal)
+    (table_tuning
+      (string_literal)))
+  (comment)
+  (add_field_statement
+    field: (string_literal)
+    table: (string_literal)
+    type: (type)
+    (field_tuning
+      (string_literal))))
+
+==================
+Footer parsing
+==================
+ADD TABLE "t_footer"
+.
+PSC
+CPSTREAM=1252
+.
+0011805449
+
+---
+
+(source_code
+  (add_table_statement
+    table: (string_literal))
+  (footer
+    (number_literal)))

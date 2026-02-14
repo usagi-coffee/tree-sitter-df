@@ -34,18 +34,18 @@ export default grammar({
       seq($._integer_literal, alias($._namedot, "."), $._integer_literal),
 
     number_literal: ($) => choice($._integer_literal, $._decimal_literal),
-    _string_literal: ($) =>
-      seq(choice($.double_quoted_string, $.single_quoted_string)),
+    string_literal: ($) =>
+      seq(choice($._double_quoted_string, $._single_quoted_string)),
 
-    double_quoted_string: ($) =>
+    _double_quoted_string: ($) =>
       seq('"', repeat(choice(/[^"\\]+/, /\\./, '""')), '"'),
 
-    single_quoted_string: ($) =>
+    _single_quoted_string: ($) =>
       seq("'", repeat(choice(/[^'\\]+/, /\\./, '""')), "'"),
     sort_order: ($) =>
       choice(kw("ASCENDING"), kw("DESCENDING"), kw("DESC"), kw("ASC")),
 
-    primitive_type: ($) =>
+    type: ($) =>
       choice(
         kw("LOGICAL"),
         kw("INTEGER"),
@@ -81,65 +81,65 @@ export default grammar({
       seq(
         kw("ADD"),
         kw("SEQUENCE"),
-        field("sequence", $._string_literal),
+        field("sequence", $.string_literal),
         repeat($.sequence_tuning)
       ),
 
     table_tuning: ($) =>
       choice(
-        seq(kw("AREA"), $._string_literal),
-        seq(kw("CAN-CREATE"), $._string_literal),
-        seq(kw("CAN-DELETE"), $._string_literal),
-        seq(kw("CAN-READ"), $._string_literal),
-        seq(kw("CAN-WRITE"), $._string_literal),
-        seq(kw("CAN-DUMP"), $._string_literal),
-        seq(kw("CAN-LOAD"), $._string_literal),
-        seq(kw("DESCRIPTION"), $._string_literal),
-        seq(kw("LABEL"), $._string_literal),
-        seq(kw("DUMP-NAME"), $._string_literal),
-        seq(kw("VALEXP"), $._string_literal),
-        seq(kw("VALMSG"), $._string_literal),
+        seq(kw("AREA"), $.string_literal),
+        seq(kw("CAN-CREATE"), $.string_literal),
+        seq(kw("CAN-DELETE"), $.string_literal),
+        seq(kw("CAN-READ"), $.string_literal),
+        seq(kw("CAN-WRITE"), $.string_literal),
+        seq(kw("CAN-DUMP"), $.string_literal),
+        seq(kw("CAN-LOAD"), $.string_literal),
+        seq(kw("DESCRIPTION"), $.string_literal),
+        seq(kw("LABEL"), $.string_literal),
+        seq(kw("DUMP-NAME"), $.string_literal),
+        seq(kw("VALEXP"), $.string_literal),
+        seq(kw("VALMSG"), $.string_literal),
         kw("FROZEN"),
         seq(
           "TABLE-TRIGGER",
-          field("trigger", $._string_literal),
+          field("trigger", $.string_literal),
           choice(kw("OVERRIDE"), kw("NO-OVERRIDE")),
           kw("PROCEDURE"),
-          field("procedure", $._string_literal),
+          field("procedure", $.string_literal),
           kw("CRC"),
-          $._string_literal
+          $.string_literal
         )
       ),
     add_table_statement: ($) =>
       seq(
         kw("ADD"),
         kw("TABLE"),
-        field("table", $._string_literal),
+        field("table", $.string_literal),
         repeat($.table_tuning)
       ),
 
     field_tuning: ($) =>
       choice(
         seq(kw("INITIAL"), $._expression),
-        seq(kw("FORMAT"), $._string_literal),
-        seq(kw("DESCRIPTION"), $._string_literal),
+        seq(kw("FORMAT"), $.string_literal),
+        seq(kw("DESCRIPTION"), $.string_literal),
         seq(kw("DECIMALS"), $.number_literal),
         seq(kw("EXTENT"), $.number_literal),
         seq(kw("POSITION"), $.number_literal),
         seq(kw("MAX-WIDTH"), $.number_literal),
         seq(kw("ORDER"), $.number_literal),
-        seq(kw("LABEL"), $._string_literal),
-        seq(kw("HELP"), $._string_literal),
-        seq(kw("COLUMN-LABEL"), $._string_literal),
-        seq(kw("COLUMN"), $._string_literal),
-        seq(kw("VALEXP"), $._string_literal),
-        seq(kw("VALMSG"), $._string_literal),
-        seq(kw("VALMSG-SA"), $._string_literal),
-        seq(kw("LOB-AREA"), $._string_literal),
+        seq(kw("LABEL"), $.string_literal),
+        seq(kw("HELP"), $.string_literal),
+        seq(kw("COLUMN-LABEL"), $.string_literal),
+        seq(kw("COLUMN"), $.string_literal),
+        seq(kw("VALEXP"), $.string_literal),
+        seq(kw("VALMSG"), $.string_literal),
+        seq(kw("VALMSG-SA"), $.string_literal),
+        seq(kw("LOB-AREA"), $.string_literal),
         seq(kw("LOB-BYTES"), $.number_literal),
         seq(kw("LOB-SIZE"), $.number_literal, optional(token.immediate("M"))),
-        seq(kw("CLOB-CODEPAGE"), $._string_literal),
-        seq(kw("CLOB-COLLATION"), $._string_literal),
+        seq(kw("CLOB-CODEPAGE"), $.string_literal),
+        seq(kw("CLOB-COLLATION"), $.string_literal),
         seq(kw("CLOB-TYPE"), $.number_literal),
         kw("MANDATORY"),
         kw("CASE-SENSITIVE")
@@ -148,23 +148,23 @@ export default grammar({
       seq(
         kw("ADD"),
         kw("FIELD"),
-        field("field", $._string_literal),
+        field("field", $.string_literal),
         kw("OF"),
-        field("table", $._string_literal),
+        field("table", $.string_literal),
         kw("AS"),
-        field("type", $.primitive_type),
+        field("type", $.type),
         repeat($.field_tuning)
       ),
 
     index_tuning: ($) =>
       choice(
-        seq(kw("AREA"), $._string_literal),
-        seq(kw("DESCRIPTION"), $._string_literal),
+        seq(kw("AREA"), $.string_literal),
+        seq(kw("DESCRIPTION"), $.string_literal),
         kw("UNIQUE"),
         kw("PRIMARY"),
         seq(
           kw("INDEX-FIELD"),
-          $._string_literal,
+          $.string_literal,
           $.sort_order,
           optional(kw("ABBREVIATED"))
         )
@@ -173,9 +173,9 @@ export default grammar({
       seq(
         kw("ADD"),
         kw("INDEX"),
-        field("index", $._string_literal),
+        field("index", $.string_literal),
         kw("ON"),
-        field("table", $._string_literal),
+        field("table", $.string_literal),
         repeat($.index_tuning)
       ),
 
@@ -184,7 +184,7 @@ export default grammar({
       choice(
         $.identifier,
         $.boolean_literal,
-        $._string_literal,
+        $.string_literal,
         $.number_literal,
         $.null_expression
       ),

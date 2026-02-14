@@ -49,3 +49,5 @@ zig-out/
 example.p
 example.df
 df
+abl.hash
+df.hash

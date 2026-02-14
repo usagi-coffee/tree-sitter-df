@@ -47,8 +47,10 @@
     "install": "node-gyp-build",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
-    "test": "tree-sitter test",
-    "build": "tree-sitter generate && tree-sitter build",
-    "build:wasm": "tree-sitter generate && tree-sitter build -w"
+    "test": "bun run tools/generate.js && bun run tools/test.js",
+    "build": "bun run tools/generate.js && tree-sitter build",
+    "build:wasm": "tree-sitter generate && tree-sitter build -w",
+    "parse": "bun run tools/generate.js && tree-sitter parse",
+    "parse:snippet": "bun run tools/generate.js && bun run tools/parse.js"
   }
 }
